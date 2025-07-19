@@ -3,9 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calcular aumento</title>
 </head>
 <body>
-    
+    <h1>Calcular el Aumento Salarial</h1>
+
+    <label for="nombre">Ingrese su nombre</label>
+    <input type="text" id="nombre" required>
+    <br>
+    <label for="salario">Ingrese su salario</label>
+    <input type="number" id="salario" required>
+    <br>
+    <label for="categoria">Ingrese su categoria (A, B, C, D)</label>
+    <input type="text" id="categoria" required>
+    <br>
+    <button onclick="calcularSalario()">Calcular</button>
+    <p id="resultado"></p>
+
+    <script>
+        function calcularSalario() {
+            let nombre = document.getElementById("nombre").value;
+            let salario = parseFloat(document.getElementById("salario").value);
+            let categoria = document.getElementById("categoria").value.toUpperCase();
+            let resultado = document.getElementById("resultado");
+            let aumento = 0;
+
+            if (!nombre || isNaN(salario) || !categoria.match(/^[ABCD]$/)) {
+                resultado.textContent = "Por favor, ingrese todos los datos correctamente.";
+                return;
+            }
+
+            if (categoria === "A") {
+                aumento = salario * 0.15;
+            } else if (categoria === "B") {
+                aumento = salario * 0.30;
+            } else if (categoria === "C") {
+                aumento = salario * 0.10;
+            } else if (categoria === "D") {
+                aumento = salario * 0.20;
+            }
+
+            let salarioFinal = salario + aumento;
+
+            resultado.innerHTML = `
+                Nombre del empleado: ${nombre}<br>
+                Categoría: ${categoria}<br>
+                Salario actual: $${salario.toFixed(2)}<br>
+                Aumento: $${aumento.toFixed(2)}<br>
+                Salario con aumento: $${salarioFinal.toFixed(2)}
+            `;
+        }
+    </script>
 </body>
 </html>

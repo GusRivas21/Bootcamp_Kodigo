@@ -3,9 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Descuentos en Autos</title>
 </head>
 <body>
-    
+    <h1>Descuentos de la Tienda de Autos</h1>
+
+    <label for="auto">Seleccione un auto: </label>
+    <select id="auto">
+        <option value=""> Seleccione </option>
+        <option value="FFa">Ford Fiesta</option>
+        <option value="FFs">Ford Focus</option>
+        <option value="FEe">Ford Escape</option>
+    </select>
+    <br>
+    <label for="precio">Precio del Auto</label>
+    <input type="number" id="precio" required>
+    <br>
+    <button onclick="calcularDescuento()">Calcular</button>
+    <p id="resultado"></p>
+
+    <script>
+        function calcularDescuento() {
+            const auto = document.getElementById("auto").value;
+            const precio = parseFloat(document.getElementById("precio").value);
+            const resultado = document.getElementById("resultado");
+            let descuento = 0;
+
+            if (!auto || isNaN(precio)) {
+                resultado.textContent = "Por favor, seleccione un coche y escriba un precio válido.";
+                return;
+            }
+
+            if (auto === "FFa") {
+                descuento = 0.05;
+            } else if (auto === "FFs") {
+                descuento = 0.10;
+            } else if (auto === "FEe") {
+                descuento = 0.20;
+            }
+
+            const montoDescuento = precio * descuento;
+            const precioFinal = precio - montoDescuento;
+
+            resultado.innerHTML = `
+                Coche seleccionado: ${auto}<br>
+                Descuento aplicado: ${descuento * 100}%<br>
+                Monto de descuento: $${montoDescuento.toFixed(2)}<br>
+                Precio final con descuento: $${precioFinal.toFixed(2)}
+            `;
+        }
+    </script>
 </body>
 </html>

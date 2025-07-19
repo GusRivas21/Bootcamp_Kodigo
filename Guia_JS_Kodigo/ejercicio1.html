@@ -28,7 +28,17 @@
             }
 
             const edad = calcularEdad(fActual, parseInt(fNacimiento));
-            resultado.textContent = "Su edad es de " + edad + " años";
+            let mensaje = "Su edad es de " + edad + " años";
+
+            if (edad < 18) {
+                mensaje += " y eres menor de edad.";
+            } else if (edad >= 18 && edad < 65) {
+                mensaje += " y eres adulto.";
+            } else {
+                mensaje += " y eres adulto mayor.";
+            }
+
+            resultado.textContent = mensaje;
         }
     </script>
 </body>
