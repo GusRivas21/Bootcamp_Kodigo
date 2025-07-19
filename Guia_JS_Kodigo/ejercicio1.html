@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular edades</title>
+</head>
+<body>
+    <h1>Descubre tu Edad 😊</h1>
+    <br>
+    <label for="nacimiento">Ingrese su Año de Nacimiento</label>
+    <input type="number" id="nacimiento" required>
+    <button onclick="mostrarEdad()">Calcular</button>
+    <p id="resultado"></p>
+
+    <script>
+        function calcularEdad(fechaActual, fechaNacimiento) {
+            return fechaActual - fechaNacimiento;
+        }
+
+        function mostrarEdad() {
+            const fNacimiento = document.getElementById('nacimiento').value;
+            const fActual = new Date().getFullYear();
+
+            if (fNacimiento === "" || fNacimiento > fActual || fNacimiento < 1900) {
+                alert("Por favor ingrese un año válido.");
+                return;
+            }
+
+            const edad = calcularEdad(fActual, parseInt(fNacimiento));
+            resultado.textContent = "Su edad es de " + edad + " años";
+        }
+    </script>
+</body>
+
+</html>
