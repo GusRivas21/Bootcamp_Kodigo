@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Nota final</title>
+</head>
+<body>
+    <h1>Ingrese sus Notas</h1>
+    <br>
+    <label for="nombre">Nombre del Alumno:</label>
+    <input type="text" id="nombre" required>
+    <br>
+    <label for="carnet">Carnet del Alumno:</label>
+    <input type="text" id="carnet" required>
+    <br>
+    <label for="examen">Nota del Examen (20%):</label>
+    <input type="number" id="examen" required>
+    <br>
+    <label for="tareas">Nota de Tareas (40%):</label>
+    <input type="number" id="tareas" required>
+    <br>
+    <label for="asistencia">Nota de Asistencia (10%):</label>
+    <input type="number" id="asistencia" required>
+    <br>
+    <label for="investigacion">Nota de Investigacion (30%):</label>
+    <input type="number" id="investigacion" required>
+    <br>
+    <button onclick="mostrarNota()">Calcular</button>
+    <br>
+    <p id="resultado"></p>
+
+    <script>
+        function mostrarNota() {
+            const nombre = document.getElementById("nombre").value;
+            const carnet = document.getElementById("carnet").value;
+            const examen = parseFloat(document.getElementById("examen").value);
+            const tareas = parseFloat(document.getElementById("tareas").value);
+            const asistencia = parseFloat(document.getElementById("asistencia").value);
+            const investigacion = parseFloat(document.getElementById("investigacion").value);
+            const resultado = document.getElementById("resultado");
+
+            if (
+                !nombre || !carnet ||
+                isNaN(examen) || isNaN(tareas) || isNaN(asistencia) || isNaN(investigacion)
+            ) {
+                resultado.textContent = "Por favor, complete todos los campos correctamente.";
+                return;
+            }
+
+            const notaFinal =
+                (examen * 0.20) +
+                (tareas * 0.40) +
+                (asistencia * 0.10) +
+                (investigacion * 0.30);
+
+            resultado.textContent = `Alumno: ${nombre} | Carnet: ${carnet} | Nota final: ${notaFinal.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>

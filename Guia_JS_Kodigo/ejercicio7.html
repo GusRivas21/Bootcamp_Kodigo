@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargar 10 numeros</title>
+</head>
+<body>
+    <h1>Análisis de 10 Números</h1>
+    <p>Ingrese 10 números enteros:</p>
+
+    <div id="inputs"></div>
+    <button onclick="analizarNumeros()">Analizar</button>
+
+    <p id="resultado" style="margin-top: 20px; font-weight: bold;"></p>
+
+    <script>
+
+        const contenedor = document.getElementById("inputs");
+        for (let i = 1; i <= 10; i++) {
+            contenedor.innerHTML += `
+                <label for="num${i}">Número ${i}:</label>
+                <input type="number" id="num${i}" required><br><br>
+            `;
+        }
+
+        function analizarNumeros() {
+            let negativos = 0;
+            let positivos = 0;
+            let multiplosDe15 = 0;
+            let sumaPares = 0;
+
+            for (let i = 1; i <= 10; i++) {
+                const valor = parseInt(document.getElementById(`num${i}`).value);
+
+                if (isNaN(valor)) {
+                    document.getElementById("resultado").textContent = "Por favor, complete todos los campos con números.";
+                    return;
+                }
+
+                if (valor < 0) negativos++;
+                if (valor > 0) positivos++;
+
+                if (valor % 15 === 0) multiplosDe15++;
+
+                if (valor % 2 === 0) sumaPares += valor;
+            }
+
+            document.getElementById("resultado").innerHTML = `
+                Cantidad de valores negativos: ${negativos}<br>
+                Cantidad de valores positivos: ${positivos}<br>
+                Cantidad de múltiplos de 15: ${multiplosDe15}<br>
+                Suma de números pares: ${sumaPares}
+            `;
+        }
+    </script>
+</body>
+</html>

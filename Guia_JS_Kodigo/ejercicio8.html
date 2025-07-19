@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablas de multiplicar</title>
+</head>
+<body>
+    <h1>Tabla de Multiplicar 📋</h1>
+    <label for="numero">Ingrese un número:</label>
+    <input type="number" id="numero" required>
+    <button onclick="mostrarTabla()">Mostrar tabla</button>
+
+    <ul id="tabla"></ul>
+
+    <script>
+        function mostrarTabla() {
+            const numero = parseInt(document.getElementById("numero").value);
+            const tabla = document.getElementById("tabla");
+
+            // Aca se limpia la tabla antes de mostrar una nueva
+            tabla.innerHTML = "";
+
+            if (isNaN(numero)) {
+                tabla.innerHTML = "<li>Por favor, ingrese un número válido.</li>";
+                return;
+            }
+
+            // Aca se genera la tabla de multiplicar
+            for (let i = 1; i <= 10; i++) {
+                const resultado = numero * i;
+                const item = document.createElement("li");
+                item.textContent = `${numero} x ${i} = ${resultado}`;
+                tabla.appendChild(item);
+            }
+        }
+    </script>
+</body>
+</html>
