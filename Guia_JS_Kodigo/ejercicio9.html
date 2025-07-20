@@ -3,9 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calcular Temperatura</title>
 </head>
 <body>
-    
+    <h1>Conversor de Temperatura</h1>
+
+    <label for="celsius">Temperatura en °C:</label>
+    <input type="number" id="celsius"><br><br>
+
+    <button onclick="convertirTemperatura()">Convertir</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function convertirTemperatura() {
+            const celsius = parseFloat(document.getElementById("celsius").value);
+            const resultado = document.getElementById("resultado");
+
+            if (isNaN(celsius)) {
+                resultado.textContent = "Por favor, ingrese una temperatura válida.";
+                return;
+            }
+
+            const fahrenheit = (celsius * 9/5) + 32;
+            let mensaje = "";
+
+            if (fahrenheit >= 14 && fahrenheit < 32) {
+                mensaje = "Temperatura baja";
+            } else if (fahrenheit >= 32 && fahrenheit < 68) {
+                mensaje = "Temperatura adecuada";
+            } else if (fahrenheit >= 68 && fahrenheit <= 96) {
+                mensaje = "Temperatura alta";
+            } else {
+                mensaje = "Temperatura desconocida";
+            }
+
+            resultado.innerHTML = `
+                Temperatura ingresada: ${celsius} °C<br>
+                Equivalente en Fahrenheit: ${fahrenheit.toFixed(2)} °F<br>
+                Estado: ${mensaje}
+            `;
+        }
+    </script>
 </body>
 </html>

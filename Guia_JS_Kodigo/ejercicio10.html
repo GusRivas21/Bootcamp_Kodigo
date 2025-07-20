@@ -3,9 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Promedio de alumnos</title>
 </head>
 <body>
-    
+    <h1>Promedios de Edad por Turno</h1>
+
+    <h2>Turno Mañana (5 estudiantes)</h2>
+    <div id="manana"></div>
+
+    <h2>Turno Tarde (6 estudiantes)</h2>
+    <div id="tarde"></div>
+
+    <h2>Turno Noche (11 estudiantes)</h2>
+    <div id="noche"></div>
+
+    <br>
+    <button onclick="calcularPromedios()">Calcular Promedios</button>
+    <p id="resultado"></p>
+
+    <script>
+        // Aca se generaran inputs dinámicos
+        function crearInputs(id, cantidad) {
+            const contenedor = document.getElementById(id);
+            for (let i = 1; i <= cantidad; i++) {
+                contenedor.innerHTML += `Edad ${i}: <input type="number" class="${id}" required><br>`;
+            }
+        }
+
+        // Aca habra un input para cada turno
+        crearInputs('manana', 5);
+        crearInputs('tarde', 6);
+        crearInputs('noche', 11);
+
+        function calcularPromedios() {
+            const resultado = document.getElementById("resultado");
+
+            // Función auxiliar para obtener promedio de inputs por clase
+            function obtenerPromedio(clase) {
+                const inputs = document.getElementsByClassName(clase);
+                let suma = 0;
+                for (let input of inputs) {
+                    const edad = parseInt(input.value);
+                    if (isNaN(edad)) {
+                        return null;
+                    }
+                    suma += edad;
+                }
+                return suma / inputs.length;
+            }
+
+            const promManana = obtenerPromedio("manana");
+            const promTarde = obtenerPromedio("tarde");
+            const promNoche = obtenerPromedio("noche");
+
+            if (promManana === null || promTarde === null || promNoche === null) {
+                resultado.textContent = "Por favor, complete todas las edades correctamente.";
+                return;
+            }
+
+            // Aca se determina el turno con mayor promedio
+            let mayorTurno = "Mañana";
+            let mayorPromedio = promManana;
+
+            if (promTarde > mayorPromedio) {
+                mayorTurno = "Tarde";
+                mayorPromedio = promTarde;
+            }
+            if (promNoche > mayorPromedio) {
+                mayorTurno = "Noche";
+                mayorPromedio = promNoche;
+            }
+
+            resultado.innerHTML = `
+                Promedio Mañana: ${promManana.toFixed(2)}<br>
+                Promedio Tarde: ${promTarde.toFixed(2)}<br>
+                Promedio Noche: ${promNoche.toFixed(2)}<br><br>
+                El turno con mayor promedio de edad es: <strong>${mayorTurno}</strong> 🎉
+            `;
+        }
+    </script>
 </body>
 </html>

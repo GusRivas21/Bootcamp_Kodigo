@@ -3,9 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calcular Descuento de Viaje</title>
 </head>
 <body>
-    
+    <h1>Descuento en Viajes Turísticos</h1>
+
+    <label for="origen">Ciudad de Origen:</label>
+    <input type="text" id="origen"><br><br>
+
+    <label for="destino">Destino:</label>
+    <select id="destino">
+        <option value="">-- Seleccione --</option>
+        <option value="La costa del Sol">La costa del Sol</option>
+        <option value="Panchimalco">Panchimalco</option>
+        <option value="Puerto el Triunfo">Puerto el Triunfo</option>
+    </select><br><br>
+
+    <label for="precio">Precio del viaje ($):</label>
+    <input type="number" id="precio"><br><br>
+
+    <button onclick="calcularDescuento()">Calcular Descuento</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function calcularDescuento() {
+            const origen = document.getElementById("origen").value.trim().toLowerCase();
+            const destino = document.getElementById("destino").value;
+            const precio = parseFloat(document.getElementById("precio").value);
+            const resultado = document.getElementById("resultado");
+
+            let descuento = 0;
+
+            if (!origen || !destino || isNaN(precio)) {
+                resultado.textContent = "Por favor, complete todos los campos correctamente.";
+                return;
+            }
+
+
+            if (destino === "La costa del Sol") {
+                descuento = 0.05;
+            } else if (destino === "Panchimalco") {
+                descuento = 0.10;
+            } else if (destino === "Puerto el Triunfo") {
+                descuento = 0.15;
+            }
+
+            const montoDescuento = precio * descuento;
+            const precioFinal = precio - montoDescuento;
+
+            resultado.innerHTML = `
+                Origen: ${origen.charAt(0).toUpperCase() + origen.slice(1)}<br>
+                Destino: ${destino}<br>
+                Precio original: $${precio.toFixed(2)}<br>
+                Descuento aplicado: ${descuento * 100}%<br>
+                Monto de descuento: $${montoDescuento.toFixed(2)}<br>
+                Precio final con descuento: $${precioFinal.toFixed(2)}
+            `;
+        }
+    </script>
 </body>
 </html>
