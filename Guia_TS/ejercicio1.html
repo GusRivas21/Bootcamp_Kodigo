@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio 1</title>
+    <style>
+        body { font-family: system-ui, sans-serif; padding: 1.5rem; }
+        .controls { display: grid; gap: .6rem; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); margin-bottom: .8rem; }
+        label { display:block; font-size:.9rem; margin-bottom:.25rem; }
+        .preview { border: 1px dashed #ccc; padding: 1.5rem; min-height: 80px; align-items:center; justify-content:center; margin-top:.5rem; }
+        button{ padding:.5rem 1rem; cursor:pointer; }
+        pre { background:#f8f8f8; padding: .6rem; }
+    </style>
+
+</head>
+<body>
+    <h1>Editor de Cabecera</h1>
+
+    <div class="controls">
+        <div>
+        <label for="titulo">Título</label>
+        <input id="titulo" type="text" value="Mi página" />
+        </div>
+
+        <div>
+        <label for="color">Color</label>
+        <input id="color" type="color" value="#1e90ff" />
+        </div>
+
+        <div>
+        <label for="fuente">Fuente</label>
+        <select id="fuente">
+            <option>Arial</option>
+            <option>Times New Roman</option>
+            <option>Georgia</option>
+            <option>Courier New</option>
+            <option>Verdana</option>
+        </select>
+        </div>
+
+        <div>
+        <label for="alineacion">Alineación</label>
+        <select id="alineacion">
+            <option value="centrado">Centrado</option>
+            <option value="izquierda">Izquierda</option>
+            <option value="derecha">Derecha</option>
+        </select>
+        </div>
+    </div>
+
+    <button id="aplicar">Aplicar</button>
+
+    <h2>Vista previa</h2>
+    <div id="preview" class="preview">Mi página</div>
+
+    <h2>Propiedades (JSON)</h2>
+    <pre id="props">{}</pre>
+
+    <script type="module" src="./dist/index1.js"></script>
+</body>
+</html>
