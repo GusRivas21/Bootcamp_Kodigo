@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+</head>
+<body>
+    <h1>Clase Canción</h1>
+
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" placeholder="Título de la canción" />
+
+    <label for="genero">Género:</label>
+    <input type="text" id="genero" placeholder="Género de la canción" />
+
+    <label for="autor">Autor:</label>
+    <input type="text" id="autor" placeholder="Autor de la canción" />
+
+    <button id="btnMostrar">Mostrar Datos</button>
+
+    <p id="resultado"></p>
+
+    <script type="module" src="./dist/index3.js"></script>
+
+    <style>
+        body {
+            background: #f5f6fa;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #273c75;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+        }
+
+        label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 6px;
+            color: #353b48;
+            font-weight: 500;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #dcdde1;
+            border-radius: 6px;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            background: #fff;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #4078c0;
+            outline: none;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 28px;
+            background: #4078c0;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #273c75;
+        }
+
+        #resultado {
+            margin-top: 30px;
+            font-size: 1.1rem;
+            color: #2d3436;
+            background: #dff9fb;
+            padding: 14px 20px;
+            border-radius: 6px;
+            min-height: 40px;
+            width: 340px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+    </style>
+</body>
+</html>

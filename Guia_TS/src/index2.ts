@@ -1,4 +1,3 @@
-// src/index2.ts
 import { Calculadora } from "./Calculadora.js";
 
 const calc = new Calculadora();
